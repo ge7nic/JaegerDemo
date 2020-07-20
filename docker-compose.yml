@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  jaeger-demo:
+    image: jaeger-demo-image:latest
+    ports:
+      - "8105:8105"
+    depends_on:
+      - demosql
+
+  demosql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: helloworld
+      MYSQL_DATABASE: jaegerdemo
+
+    ports:
+      - "3308:3306"
