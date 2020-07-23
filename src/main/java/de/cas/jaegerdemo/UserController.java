@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import de.cas.jaegerdemo.exceptions.UserNotFoundException;
-import de.cas.jaegerdemo.models.User;
+import org.springframework.web.client.RestTemplate;
+import de.cas.jaegerdemo.exception.UserNotFoundException;
+import de.cas.jaegerdemo.model.User;
 import de.cas.jaegerdemo.repository.UserRepository;
 
 @RestController
@@ -23,6 +24,9 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private RestTemplate restTemplate;
 
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
@@ -47,5 +51,10 @@ public class UserController {
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return response;
+	}
+
+	@GetMapping
+	public ResponseEntity<User> getChainedUser(@PathVariable(value = "id") Long userId) throws UserNotFoundException {
+		return restTemplate.getForEntity("http://localhost:8105/users/{id}", User.class);
 	}
 }
