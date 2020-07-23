@@ -1,4 +1,4 @@
-package de.cas.jaegerdemo.models;
+package de.cas.jaegerdemo.model;
 
 import javax.persistence.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;

@@ -1,4 +1,4 @@
-package de.cas.jaegerdemo.exceptions;
+package de.cas.jaegerdemo.exception;
 
 public class UserNotFoundException extends RuntimeException {
 
