@@ -60,6 +60,6 @@ public class UserController {
 
     @GetMapping("/users/chain/{id}")
     public ResponseEntity<User> getChainedUser(@PathVariable(value = "id") Long userId) throws UserNotFoundException {
-        return restTemplate.getForEntity("http://localhost:8105/users/{id}", User.class);
+        return restTemplate.getForEntity("http://localhost:8105/users/{userId}", User.class, userId.toString());
     }
 }
