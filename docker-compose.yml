@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  jaeger-demo:
+  demo-app:
     image: jaeger-demo-image:latest
     ports:
       - "8105:8105"
